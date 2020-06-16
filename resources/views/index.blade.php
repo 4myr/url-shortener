@@ -5,7 +5,7 @@
         <p>سرویس آنلاین و پرسرعت کوتاه کننده لینک</p>
 
         <div class="container pt-5 shortForm">
-            <form action="" method="post">
+            <form method="post">
                 <div class="row">
                     <div class="col-md-9 pl-md-2 mb-5-sm">
                         <div class="form-group mb-0">

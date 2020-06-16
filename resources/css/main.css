@@ -87,7 +87,7 @@ button.form-control {
 @media only screen and (min-width: 768px) {
     /* For desktop and iPad: */
     .slugForm {
-        width: 60%;
+        width: 65%;
     }
     #linkInput {
         border-bottom-left-radius: 0;
@@ -120,7 +120,7 @@ button.form-control {
     border: 0;
     text-align: center;
     color: white !important;
-    padding: 0;
+    padding: 15px;
 }
 #slugInput::placeholder {
     color: white !important;
@@ -131,7 +131,7 @@ button.form-control {
     background: #222831;
     border: 0;
     text-align: center;
-    padding: 0;
+    padding: 15px;
 }
 
 .features {
