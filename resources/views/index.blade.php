@@ -1,26 +1,33 @@
 @extends('layouts.frontend')
 @section('content')
+    <div class="content text-center">
+        <h2 class="font-weight-bold">کوتاه کننده لینک سریع</h2><br>
+        <p>سرویس آنلاین و پرسرعت کوتاه کننده لینک</p>
 
-    <h2 class="font-weight-bold">کوتاه کننده لینک سریع</h2>
-    <p>سرویس آنلاین و پرسرعت کوتاه کننده لینک</p>
+        <div class="container pt-5 shortForm">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-md-9 pl-md-2 mb-5-sm">
+                        <div class="form-group mb-0">
+                            <input type="text" name="link" id="linkInput" class="form-control" placeholder="لینک خود را وارد کنید...">
+                        </div>
+                        <div class="justify-content-left" dir="ltr">
+                            <div class="form-group form-inline slugForm m-0">
+                                <input type="text" name="slug" id="slugStaticInput" class="form-control w-50" placeholder="{{ env('APP_URL') }}/" disabled>
+                                <input type="text" autocomplete="off" name="slug" id="slugInput" class="form-control w-50" placeholder="آدرس کوتاه دلخواه">
+                            </div>
+                        </div>
 
-    <div class="container w-75 pt-5">
-        <form action="" method="post">
-            <div class="form-inline justify-content-center">
-                <div class="form-group">
-                    <input type="text" name="link" id="linkInput" class="form-control" size="30" placeholder="لینک خود را وارد کنید...">
+                    </div>
+                    <div class="col-md-3 pr-lg-0">
+                        <div class="form-group">
+                        <button type="submit" class="btn btn-primary form-control">کوتاه کن!</button>
+                    </div>
+                    </div>
                 </div>
-                <div class="form-group mr-2">
-                    <button type="submit" class="btn btn-primary form-control">کوتاه کن!</button>
-                </div>
-            </div>
-            <div class="form-inline justify-content-center" dir="ltr">
-                <div class="form-group slugForm">
-                    <input type="text" name="slug" id="slugStaticInput" class="form-control" size="7" placeholder="{{ env('APP_URL') }}/" disabled>
-                    <input type="text" autocomplete="off" name="slug" id="slugInput" class="form-control" size="7" placeholder="آدرس کوتاه دلخواه">
 
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
+    @include('partials.features')
 @endsection

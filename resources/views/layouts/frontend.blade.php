@@ -14,15 +14,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('style/css/main.css?') }}<?php echo time(); ?>">
+    <link rel="stylesheet" href="{{ asset('css/app.css?') }}<?php echo time(); ?>">
     @yield('headCSS')
-
 
     <!-- Fonts -->
 
 </head>
 <body>
-<div >
     <nav class="navbar navbar-expand-sm navbar-dark pb-3">
         <a class="navbar-brand pull-right pl-" href="#">
             <img class="logo img-responsive" src="{{ asset('images/logo.png') }}" alt="URL Shortener">
@@ -54,9 +52,11 @@
             </ul>
         </div>
     </nav>
-    <div class="content text-center">
-        @yield('content')
-    </div>
-</div>
+    @yield('content')
+
+    <footer class="footer container-fluid pt-4 pb-2">
+        <p>تمامی حقوق برای این سایت محفوظ است. © 1399</p>
+        <p>طراحی و توسعه توسط <a href="https://xenops.ir" class="font-weight-bold">زیناپس</a></p>
+    </footer>
 </body>
 </html>
