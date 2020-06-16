@@ -23,7 +23,7 @@
 </head>
 <body>
 <div >
-    <nav class="navbar navbar-expand-sm navbar-dark pb-3" dir="rtl">
+    <nav class="navbar navbar-expand-sm navbar-dark pb-3">
         <a class="navbar-brand pull-right pl-" href="#">
             <img class="logo img-responsive" src="{{ asset('images/logo.png') }}" alt="URL Shortener">
         </a>
@@ -32,8 +32,8 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId" dir="rtl">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-right">
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item active pl-lg-3">
                     <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
                 </li>
@@ -44,7 +44,7 @@
                     <a class="nav-link" href="#">تماس با ما</a>
                 </li>
             </ul>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-right">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item pl-lg-3">
                     <a class="nav-link" href="#">ورود</a>
                 </li>
@@ -54,7 +54,7 @@
             </ul>
         </div>
     </nav>
-    <div class="content">
+    <div class="content text-center">
         @yield('content')
     </div>
 </div>

@@ -28,6 +28,8 @@
 }
 body {
     font-family: "Iran Sans Web";
+    direction: rtl;
+    text-align: right;
 }
 .navbar {
     background-color: #222831;
@@ -44,4 +46,45 @@ body {
 }
 .bg-primary {
     background: #393e46 !important;
+}
+.content {
+    background: #393e46;
+    color: #bcc1c7;
+    padding: 130px 0;
+}
+input.form-control {
+    height: 50px;
+    padding: 0px 25px;
+    color: #4b515c !important;
+}
+button.form-control {
+    height: 50px;
+    padding: 0px 25px;
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .slugForm {
+        margin-left: 19px;
+    }
+    #linkInput {
+        border-bottom-left-radius: 0;
+    }
+}
+#slugInput {
+    border-radius: 0;
+    background: #222831;
+    border: 0;
+    text-align: center;
+    color: white !important;
+}
+#slugInput::placeholder {
+    color: white !important;
+    font-size: 9pt;
+}
+#slugStaticInput {
+    border-radius: 0;
+    background: #222831;
+    border: 0;
+    padding: 8px;
+    text-align: center;
 }
