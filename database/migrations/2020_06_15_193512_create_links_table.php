@@ -18,7 +18,7 @@ class CreateLinksTable extends Migration
             $table->string('slug', 32);
             $table->text('link');
             $table->smallInteger('disabled');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
