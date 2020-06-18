@@ -4,7 +4,8 @@
     <script>
         let baseURL = '{{ env('APP_URL') }}/public'
         $(document).ready(function () {
-            $('#slugInput').on('input', function () {
+            let searching;
+            $('input#slugInput').keyup(function () {
                 let inputValue = $('#slugInput').val();
 
                 $('#checkItem').hide();
@@ -12,24 +13,30 @@
                 $('#closeItem').hide();
 
                 if(inputValue.length >= 3) {
+                    if(searching) return;
                     $.ajax({
                         type: "POST",
                         url: baseURL + "/api/checkSlug",
                         data: {slug: inputValue},
                         beforeSend: function () {
-                            $('#loadingItem').show(1);
-                        }
-                    }).done(function (data) {
-                        if(data.ok) {
-                            setTimeout(function () {
-                                $('#loadingItem').hide();
-                                $('#checkItem').show();
-                            }, 500)
+                            $('#loadingItem').show();
+                            searching = true;
+                        },
+                        success: function (data) {
+                            if(data.ok) {
+                                setTimeout(function () {
+                                    $('#loadingItem').hide();
+                                    $('#checkItem').show();
+                                }, 500)
 
-                        }
-                        else {
-                            $('#loadingItem').hide();
-                            $('#closeItem').show();
+                            }
+                            else {
+                                $('#loadingItem').hide();
+                                $('#closeItem').show();
+                            }
+                        },
+                        complete: function() {
+                            searching = false;
                         }
                     })
                 }

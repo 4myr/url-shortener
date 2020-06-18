@@ -1,3 +1,6 @@
+<?php
+    $success = \Illuminate\Support\Facades\Session::get('success');
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -8,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ env('APP_URL') }}{{ mix('/js/app.js') }}"></script>
+
     @yield('headJS')
 
     <!-- Styles -->
@@ -56,5 +60,19 @@
         <p>تمامی حقوق برای این سایت محفوظ است. © 1399</p>
         <p>طراحی و توسعه توسط <a href="https://xenops.ir" class="font-weight-bold">زیناپس</a></p>
     </footer>
+
+    <!-- Body Scripts -->
+    <script>
+    @if($errors->any())
+        swal({
+            title: "@lang('titles.error')", text: "{{ $errors->first() }}", icon: "error", timer: 1000});
+    @elseif(is_bool($success))
+        @if($success)
+            swal({title: "@lang('titles.success')", text: "@lang('messages.success')", icon: "success", timer: 1000});
+        @else
+            swal({title: "@lang('titles.error')", text: "@lang('messages.error')", icon: "success", timer: 1000});
+        @endif
+    @endif
+    </script>
 </body>
 </html>

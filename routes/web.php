@@ -15,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 Route::post('/', 'ShortLinkController@shortLink');
+
+Route::get('/{slug}', 'SlugController@process');
