@@ -3,45 +3,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
         let baseURL = '{{ env('APP_URL') }}/public'
-        $(document).ready(function () {
-            let searching;
-            $('input#slugInput').keyup(function () {
-                let inputValue = $('#slugInput').val();
+        let titles = @json(__('titles'));
+        let messages = @json(__('messages'));
 
-                $('#checkItem').hide();
-                $('#loadingItem').hide();
-                $('#closeItem').hide();
-
-                if(inputValue.length >= 3) {
-                    if(searching) return;
-                    $.ajax({
-                        type: "POST",
-                        url: baseURL + "/api/checkSlug",
-                        data: {slug: inputValue},
-                        beforeSend: function () {
-                            $('#loadingItem').show();
-                            searching = true;
-                        },
-                        success: function (data) {
-                            if(data.ok) {
-                                setTimeout(function () {
-                                    $('#loadingItem').hide();
-                                    $('#checkItem').show();
-                                }, 500)
-
-                            }
-                            else {
-                                $('#loadingItem').hide();
-                                $('#closeItem').show();
-                            }
-                        },
-                        complete: function() {
-                            searching = false;
-                        }
-                    })
-                }
-            })
-        });
     </script>
 @endsection
 @section('content')
@@ -49,8 +13,13 @@
         <h2 class="font-weight-bold">کوتاه کننده لینک سریع</h2><br>
         <p>سرویس آنلاین و پرسرعت کوتاه کننده لینک</p>
 
+
+
         <div class="container pt-5 shortForm">
-            <form method="post">
+            <div class="spinner-border" style="display: none; width: 3rem; height: 3rem;" role="status" id="formLoading">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <form id="postForm" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-9 pl-md-2 mb-5-sm">
@@ -77,6 +46,13 @@
                     </div>
                 </div>
 
+            </form>
+            <form id="copyForm" style="display: none">
+                <div class="form-group form-inline justify-content-center">
+                    <input type="text" id="copyInput" dir="ltr" class="form-control text-center" size="40" placeholder="لینک ایجاد شده!">
+                    <button id="copyButton" class="btn btn-primary form-control mr-md-2">کپی</button>
+                    <button id="againButton" class="btn btn-secondary form-control mr-md-2">دوباره</button>
+                </div>
             </form>
         </div>
     </div>

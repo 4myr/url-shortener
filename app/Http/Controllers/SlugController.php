@@ -10,19 +10,8 @@ class SlugController extends Controller
 {
     public function process($slug)
     {
-        $link = "";
-        if(Cache::has($slug)) {
-            $link = Cache::get($slug);
-        }
-        else {
-            $link = Link::query()
-                    ->where('slug', $slug)
-                    ->get('link')
-                    ->first()
-                    ->link ?? '';
-        }
-        
-        if(filter_var($link, FILTER_VALIDATE_URL) !== FALSE) return redirect($link);
+        $link = getSlugLink($slug);
+        if (urlIsValid($link)) return redirect($link);
         else return abort(404);
     }
 }
