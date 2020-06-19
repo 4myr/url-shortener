@@ -6,7 +6,6 @@ use App\Link;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class ShortLinkController extends Controller
 {
@@ -57,7 +56,7 @@ class ShortLinkController extends Controller
             $error = $validator->errors()->first();
         }
 
-        $fullUrl = env('APP_URL') . "/" . $slug;
+        $fullUrl = url()->to($slug);
         return response()->json([
             'ok' => $success,
             'error' => $error,
@@ -67,7 +66,6 @@ class ShortLinkController extends Controller
     }
     public function checkSlug(Request $request) {
         if ($request->ajax()) {
-            $ok = false;
             $slug = $request->post('slug');
 
             return response()->json([
