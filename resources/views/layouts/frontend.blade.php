@@ -66,17 +66,5 @@
     </footer>
 
     <!-- Body Scripts -->
-    <script>
-    @if($errors->any())
-        swal({
-            title: "@lang('titles.error')", text: "{{ $errors->first() }}", icon: "error", timer: 1000});
-    @elseif(is_bool($success))
-        @if($success)
-            swal({title: "@lang('titles.success')", text: "@lang('messages.success')", icon: "success", timer: 1000});
-        @else
-            swal({title: "@lang('titles.error')", text: "@lang('messages.error')", icon: "success", timer: 1000});
-        @endif
-    @endif
-    </script>
 </body>
 </html>
