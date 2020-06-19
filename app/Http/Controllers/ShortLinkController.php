@@ -11,8 +11,9 @@ use Illuminate\Support\Str;
 class ShortLinkController extends Controller
 {
     protected function rules($slug) {
+        $urlRegex = "/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/su";
         return [
-            'link' => 'required|url',
+            'link' => 'required|regex:'.$urlRegex,
             'slug' => $slug ? 'required|string|min:3|max:64' : ''
         ];
     }
@@ -21,12 +22,20 @@ class ShortLinkController extends Controller
         $slug = $request->post('slug');
         $link = $request->post('link');
 
+        $link = validateUrl($link);
+
         $success = false;
         $error = "";
 
         $validator = Validator::make(
-            $request->all(),
-            $this->rules($slug)
+            [
+                'link' => $link,
+                'slug' => $slug
+            ],
+            $this->rules($slug),
+            [
+                'regex' => __('messages.invalidUrl')
+            ]
         );
 
         if (!$validator->fails()) {

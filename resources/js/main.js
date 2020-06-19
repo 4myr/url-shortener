@@ -1,6 +1,10 @@
 $(document).ready(function () {
 
     let searching;
+    let typingTimer;
+    let doneTypingInterval = 1000;
+    let slugInput = $('input#slugInput');
+
 
     let throwAlert = function(type, text) {
         let title = titles[type];
@@ -12,13 +16,23 @@ $(document).ready(function () {
             timer: alertTime[type]
         });
     };
-    $('input#slugInput').keyup(function () {
-        let inputValue = $('#slugInput').val();
+    slugInput.on('keyup', function () {
+        clearTimeout(typingTimer);
+        let inputValue = slugInput.val();
+        if(inputValue.length >= 3) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    });
+    slugInput.on('keydown', function() {
+       clearTimeout(typingTimer);
+    });
+
+    let doneTyping = function() {
 
         $('#checkItem').hide();
         $('#loadingItem').hide();
         $('#closeItem').hide();
-
+        let inputValue = slugInput.val();
         if(inputValue.length >= 3) {
             if(searching) return;
             $.ajax({
@@ -49,7 +63,8 @@ $(document).ready(function () {
                 }
             })
         }
-    })
+    }
+
 
     $('#shortLinkButton').click(function(e) {
         let slug = $('#slugInput').val();
@@ -85,9 +100,6 @@ $(document).ready(function () {
                 $('#formLoading').hide();
                 $('#postForm').fadeIn(1000);
             },
-            complete: function() {
-
-            }
         })
         e.preventDefault();
     })

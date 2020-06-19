@@ -30501,6 +30501,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 $(document).ready(function () {
   var searching;
+  var typingTimer;
+  var doneTypingInterval = 1000;
+  var slugInput = $('input#slugInput');
 
   var throwAlert = function throwAlert(type, text) {
     var title = titles[type];
@@ -30512,11 +30515,23 @@ $(document).ready(function () {
     });
   };
 
-  $('input#slugInput').keyup(function () {
-    var inputValue = $('#slugInput').val();
+  slugInput.on('keyup', function () {
+    clearTimeout(typingTimer);
+    var inputValue = slugInput.val();
+
+    if (inputValue.length >= 3) {
+      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+  });
+  slugInput.on('keydown', function () {
+    clearTimeout(typingTimer);
+  });
+
+  var doneTyping = function doneTyping() {
     $('#checkItem').hide();
     $('#loadingItem').hide();
     $('#closeItem').hide();
+    var inputValue = slugInput.val();
 
     if (inputValue.length >= 3) {
       if (searching) return;
@@ -30546,7 +30561,8 @@ $(document).ready(function () {
         }
       });
     }
-  });
+  };
+
   $('#shortLinkButton').click(function (e) {
     var slug = $('#slugInput').val();
     var link = $('#linkInput').val();
@@ -30578,8 +30594,7 @@ $(document).ready(function () {
         throwAlert('error', messages.error);
         $('#formLoading').hide();
         $('#postForm').fadeIn(1000);
-      },
-      complete: function complete() {}
+      }
     });
     e.preventDefault();
   });

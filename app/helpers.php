@@ -35,7 +35,17 @@ function getSlugLink($slug) {
     }
     return $link;
 }
+function validateUrl($link) {
+    if ( $parts = parse_url($link) ) {
+        if ( !isset($parts["scheme"]) )
+        {
+            $link = "http://$link";
+        }
+    }
+    return $link;
+}
 function urlIsValid($link) {
+
     if (filter_var($link, FILTER_VALIDATE_URL) !== FALSE) return true;
     return false;
 }
