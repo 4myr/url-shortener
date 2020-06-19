@@ -10,6 +10,14 @@
     <title>{{ env('APP_NAME') }}</title>
 
     <!-- Scripts -->
+    <script>
+        let baseURL = '{{ env('APP_URL') }}'
+        let titles = @json(__('titles'));
+        let messages = @json(__('messages'));
+        let alertTime = {'success': 1000, 'error': 2000};
+
+    </script>
+
     <script src="{{ env('APP_URL') }}{{ mix('/js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

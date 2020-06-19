@@ -1,12 +1,6 @@
 @extends('layouts.frontend')
 @section('headJS')
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script>
-        let baseURL = '{{ env('APP_URL') }}/public'
-        let titles = @json(__('titles'));
-        let messages = @json(__('messages'));
-
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 @endsection
 @section('content')
     <div class="content text-center">
@@ -49,7 +43,7 @@
             </form>
             <form id="copyForm" style="display: none">
                 <div class="form-group form-inline justify-content-center">
-                    <input type="text" id="copyInput" dir="ltr" class="form-control text-center" size="40" placeholder="لینک ایجاد شده!">
+                    <input type="text" id="copyInput" dir="ltr" class="form-control text-center" size="40" placeholder="لینک ایجاد شده!" readonly>
                     <button id="copyButton" class="btn btn-primary form-control mr-md-2">کپی</button>
                     <button id="againButton" class="btn btn-secondary form-control mr-md-2">دوباره</button>
                 </div>

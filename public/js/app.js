@@ -30508,7 +30508,7 @@ $(document).ready(function () {
       title: title,
       text: text,
       icon: type,
-      timer: 2000
+      timer: alertTime[type]
     });
   };
 
